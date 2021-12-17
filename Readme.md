@@ -16,7 +16,7 @@ This package allows you to dynamically display toasts notifications via Laravel 
 
 ## Requirements
 
-- AlpineJS version ^3.0 or higher
+- AlpineJS version 3.0 or higher
 
 ## Installation
 
@@ -26,11 +26,20 @@ You can install the package via composer:
 composer require aliowa/livewire-toasts
 ```
 
-Add the `x-aliowa::toasts` component to your app layout view:
+Add the `x-aliowa-livewire-toasts` component to your app layout view:
 
 ```html
-<x-aliowa::toasts/>
+<x-aliowa-livewire-toasts />
 <script src="{{ asset('js/app.js') }}"></script>
+```
+
+By default toasts are styled with TailwindCSS. To autodiscover necessary classes, either [publish toasts views](#custom-view) or add package views location to your `tailwind.config.js` file:
+
+```js
+module.exports = {
+    content: [
+        './vendor/aliowa/**/views/**/*.blade.php',
+    ],
 ```
 
 ## Usage
