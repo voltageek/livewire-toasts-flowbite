@@ -4,6 +4,7 @@ namespace Aliowa\LivewireToasts\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 
 class LivewireToastsProvider extends ServiceProvider
 {
@@ -11,10 +12,14 @@ class LivewireToastsProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'aliowa');
 
+        $this->callAfterResolving(BladeCompiler::class, function () {
+            Blade::component('aliowa::components.livewire-toasts', 'aliowa-livewire-toasts');
+        });
+
         if ($this->app->runningInConsole()) {
             $this->publishes(
-                [__DIR__ . '/../../resources/views' => $this->app->resourcePath('views/vendor/aliowa/livewire-toasts')],
-                ['aliowa-livewire-toasts', 'aliowa-livewire-toasts:views']
+                [__DIR__ . '/../../resources/views' => $this->app->resourcePath('views/vendor/aliowa')],
+                ['aliowa', 'aliowa-livewire-toasts', 'aliowa-livewire-toasts:views']
             );
         }
 
