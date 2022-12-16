@@ -1,6 +1,6 @@
 <?php
 
-namespace Aliowa\LivewireToasts\Traits;
+namespace Voltageek\LivewireToastsFlowbite\Traits;
 
 trait Toastable
 {
@@ -26,6 +26,6 @@ trait Toastable
 
     private function emitToastEvent(string $message, string $type): void
     {
-        $this->dispatchBrowserEvent('aliowa:toast', ['type' => $type, 'message' => $message]);
+        $this->dispatchBrowserEvent('voltageek:toast', ['type' => $type, 'message' => $message]);
     }
 }

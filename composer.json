@@ -1,29 +1,29 @@
 {
-    "name": "aliowa/livewire-toasts",
-    "description": "Laravel Livewire toast notifications using Alpine JS",
-    "homepage": "https://github.com/aliowacom/livewire-toasts",
+    "name": "voltageek/livewire-toasts-flowbite",
+    "description": "Laravel Livewire toast notifications using Alpine JS & Flowbite component (Fork of aliowa/livewire-toasts) ",
+    "homepage": "https://github.com/voltageek/livewire-toasts-flowbite",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Aleksejs Averkijevs",
-            "email": "aleksejs.averkijevs@gmail.com",
+            "name": "Kwame Nkansah",
+            "email": "kwame.nkansah@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^9.0",
         "livewire/livewire": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Aliowa\\LivewireToasts\\": "src"
+            "Voltageek\\LivewireToastsFlowbite\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Aliowa\\LivewireToasts\\Providers\\LivewireToastsProvider"
+                "Voltageek\\LivewireToastsFlowbite\\Providers\\LivewireToastsProviderFlowbite"
             ]
         }
     }

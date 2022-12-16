@@ -4,7 +4,7 @@ This package allows you to dynamically display toasts notifications via Laravel 
 
 ## Documentation
 
-- [Livewire Toasts](#livewire-toasts)
+- [Livewire Toasts](#livewire-toasts-flowbite)
   - [Documentation](#documentation)
   - [Requirements](#requirements)
   - [Installation](#installation)
@@ -23,16 +23,16 @@ This package allows you to dynamically display toasts notifications via Laravel 
 You can install the package via composer:
 
 ```console
-composer require aliowa/livewire-toasts
+composer require voltageek/livewire-toasts-flowbite
 ```
 
-Add the `x-aliowa-livewire-toasts` component to your app layout view:
+Add the `x-voltageek-livewire-toasts` component to your app layout view:
 
 ```html
 <body>
   <!-- body here -->
   
-  <x-aliowa-livewire-toasts />
+  <x-voltageek-livewire-toasts-flowbite />
 </body>
 ```
 
@@ -41,7 +41,7 @@ By default toasts are styled with TailwindCSS. To autodiscover necessary classes
 ```js
 module.exports = {
     content: [
-        './vendor/aliowa/**/views/**/*.blade.php',
+        './vendor/voltageek/**/views/**/*.blade.php',
     ],
 ```
 
@@ -56,7 +56,7 @@ Add `Toastable` trait to your livewire component:
 
 namespace App\Http\Livewire;
 
-use Aliowa\LivewireToasts\Traits\Toastable;
+use voltageek\LivewireToastsFlowbite\Traits\Toastable;
 use Livewire\Component;
 
 class SavePost extends Component
@@ -91,7 +91,7 @@ public function savePost()
 By default toasts view file uses TailwindCSS, but you can publish and change the way toasts will look on your website.
 
 ```console
-php artisan vendor:publish --tag=aliowa-livewire-toasts:views
+php artisan vendor:publish --tag=voltageek-livewire-toasts-flowbite:views
 ```
 
-Now edit the view file `resources/views/vendor/components/aliowa/livewire-toasts/components/toasts.blade.php`. The package will use this view to render the component.
+Now edit the view file `resources/views/vendor/components/voltageek/livewire-toasts-flowbite/components/toasts.blade.php`. The package will use this view to render the component.

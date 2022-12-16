@@ -1,32 +1,36 @@
 <?php
 
-namespace Aliowa\LivewireToasts\Providers;
+namespace Voltageek\LivewireToastsFlowbite\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 
-class LivewireToastsProvider extends ServiceProvider
+class LivewireToastsProviderFlowbite extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'aliowa');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'voltageek');
 
         $this->callAfterResolving(BladeCompiler::class, function () {
-            Blade::component('aliowa::components.livewire-toasts', 'aliowa-livewire-toasts');
+            Blade::component('voltageek::components.livewire-toasts-flowbite', 'voltageek-livewire-toasts-flowbite');
         });
 
         if ($this->app->runningInConsole()) {
             $this->publishes(
-                [__DIR__ . '/../../resources/views' => $this->app->resourcePath('views/vendor/aliowa')],
-                ['aliowa', 'aliowa-livewire-toasts', 'aliowa-livewire-toasts:views']
+                [__DIR__ . '/../../resources/views' => $this->app->resourcePath('views/vendor/voltageek')],
+                ['voltageek', 'voltageek-livewire-toasts-flowbite', 'voltageek-livewire-toasts-flowbite:views']
             );
         }
+        \Log::debug("LivewireToastsProviderFlowbite booted");
 
-        Blade::directive('aliowaLivewireToastsScripts', function () {
+        Blade::directive('voltageekLivewireToastsFlowbiteScripts', function () {
+            \Log::info("voltageekLivewireToastsFlowbiteScripts directive");
             return <<<'HTML'
-            <script>
-                document.addEventListener('alpine:init', () => {
+            <script type="text/javascript">
+                console.debug("Setting up alpine store");
+                window.addEventListener('alpine:initialized', function () {
+                // document.addEventListener('alpine:init', () => {
                     Alpine.store("toasts", {
                         counter: 0,
                         list: [],
@@ -48,7 +52,7 @@ class LivewireToastsProvider extends ServiceProvider
                                     }).length + 1
                                 setTimeout(() => {
                                     this.destroyToast(index)
-                                }, 2000 * totalVisible)
+                                }, 200000 * totalVisible)
                             }, 0)
                         },
                         destroyToast(index) {
@@ -56,7 +60,7 @@ class LivewireToastsProvider extends ServiceProvider
                         },
                     })
                 }),
-                document.addEventListener('aliowa:toast', event => {
+                document.addEventListener('voltageek:toast', event => {
                     Alpine.store('toasts').createToast(event.detail.message, event.detail.type);
                 })
             </script>
