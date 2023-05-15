@@ -22,44 +22,39 @@ class LivewireToastsProviderFlowbite extends ServiceProvider
                 ['voltageek', 'voltageek-livewire-toasts-flowbite', 'voltageek-livewire-toasts-flowbite:views']
             );
         }
-        \Log::debug("LivewireToastsProviderFlowbite booted");
 
         Blade::directive('voltageekLivewireToastsFlowbiteScripts', function () {
-            \Log::info("voltageekLivewireToastsFlowbiteScripts directive");
             return <<<'HTML'
             <script type="text/javascript">
                 console.debug("Setting up alpine store");
-                window.addEventListener('alpine:initialized', function () {
-                // document.addEventListener('alpine:init', () => {
-                    Alpine.store("toasts", {
-                        counter: 0,
-                        list: [],
-                        createToast(message, type = "info") {
-                            const index = this.list.length
-                            this.list.push({
-                                id: this.counter++,
-                                message,
-                                type,
-                                visible: false,
-                            })
+                Alpine.store("toasts", {
+                    counter: 0,
+                    list: [],
+                    createToast(message, type = "info") {
+                        const index = this.list.length
+                        this.list.push({
+                            id: this.counter++,
+                            message,
+                            type,
+                            visible: false,
+                        })
 
-                            // transition-enter fix:
+                        // transition-enter fix:
+                        setTimeout(() => {
+                            this.list[index].visible = true
+                            let totalVisible =
+                                this.list.filter((toast) => {
+                                    return toast.visible
+                                }).length + 1
                             setTimeout(() => {
-                                this.list[index].visible = true
-                                let totalVisible =
-                                    this.list.filter((toast) => {
-                                        return toast.visible
-                                    }).length + 1
-                                setTimeout(() => {
-                                    this.destroyToast(index)
-                                }, 200000 * totalVisible)
-                            }, 0)
-                        },
-                        destroyToast(index) {
-                            this.list[index].visible = false
-                        },
-                    })
-                }),
+                                this.destroyToast(index)
+                            }, 2000 * totalVisible)
+                        }, 0)
+                    },
+                    destroyToast(index) {
+                        this.list[index].visible = false
+                    },
+                });
                 document.addEventListener('voltageek:toast', event => {
                     Alpine.store('toasts').createToast(event.detail.message, event.detail.type);
                 })

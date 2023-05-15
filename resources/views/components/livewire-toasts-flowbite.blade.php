@@ -6,7 +6,7 @@
             x-transition:leave="transition ease-out duration-300"
             x-transition:leave-start="transform translate-y-0 opacity-100"
             x-transition:leave-end="transform translate-y-full opacity-0"
-            class="bg-white shadow-lg mx-auto w-96 max-w-full text-md pointer-events-auto bg-clip-padding rounded-lg block mb-3"
+            class="shadow-lg mx-auto w-96 max-w-full text-md pointer-events-auto bg-clip-padding rounded-lg block mb-3"
             >
             <div class="flex justify-between items-center py-2 px-3 bg-clip-padding border-b border-gray-500 rounded-t-lg"
             :class="{
@@ -28,8 +28,7 @@
                         aria-label="Close"></button>
                 </div>
             </div>
-            <div class="p-3 rounded-b-lg break-words" x-text="toast.message"></div>
+            <div class="p-3 rounded-b-lg break-words bg-white" x-text="toast.message"></div>
         </div>
     </template>
 </div>
-@voltageekLivewireToastsFlowbiteScripts
