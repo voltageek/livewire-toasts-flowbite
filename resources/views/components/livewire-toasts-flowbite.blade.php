@@ -1,4 +1,4 @@
-<div x-data class="fixed top-0 right-0 left-0 lg:left-auto p-4 overflow-x-hidden z-200">
+<div x-data class="fixed top-0 right-0 left-0 lg:left-auto p-4 overflow-x-hidden " style="z-index: 1900;">
     <template x-for="(toast, index) in $store.toasts.list" :key="toast.id">
         <div x-show="toast.visible" @click="$store.toasts.destroyToast(index)"
             x-transition:enter="transition ease-in duration-200"
